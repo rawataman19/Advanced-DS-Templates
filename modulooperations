@@ -1,0 +1,27 @@
+
+ll mul(ll a, ll b) {
+    return ((a % mod) * (b % mod)) % mod;
+}
+
+ll add(ll a, ll b) {
+    return (a % mod + b % mod) % mod;
+}
+ll sub(ll a, ll b)
+{
+    return (mod + a % mod - b % mod) % mod;
+}
+ld powe(ld a, int b) {
+    if (b == 0) return 1;
+    if (b % 2) return a * powe(a * a, b / 2);
+    return powe(a * a, b / 2);
+}
+ll expo(ll base, ll pow) {
+    if (pow == 0) return 1;
+    ll half = expo(base, pow / 2);
+    if (pow % 2 == 0) return mul(half, half);
+    return mul(half, mul(half, base));
+}
+ll divi(ll a, ll b)
+{
+    return mul(a, expo(b, mod - 2));
+}
